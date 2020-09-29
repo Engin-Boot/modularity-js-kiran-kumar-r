@@ -1,4 +1,4 @@
-const expect = require('chai').expect;
+// jshint esversion:6
 
 const MajorColors = [
     "white",
@@ -23,8 +23,11 @@ function GetColorFromPairNumber(pairNumber) {
         Math.floor(zeroBasedPairNumber / MinorColors.length);
     colorPair.major = MajorColors[majorColorIndex];
     colorPair.minor = MinorColors[zeroBasedPairNumber % MinorColors.length];
-    return colorPair
+    return colorPair ;
 }
+
+console.log( GetPairNumberFromColors( 2, 3 ) ) ;
+console.log( GetColorFromPairNumber(1) ) ;
 
 function GetPairNumberFromColors(majorColor, minorColor) {
     let majorIndex = 0;
@@ -40,23 +43,6 @@ function GetPairNumberFromColors(majorColor, minorColor) {
         }
     }
     return majorIndex * MinorColors.length + minorIndex + 1;
-}
+} 
 
-function testNumberToPair(number, expectedMajor, expectedMinor) {
-    const pairOfColors = GetColorFromPairNumber(number);
-    console.log(`${number} = ${expectedMajor} ${expectedMinor}`);
-    expect(pairOfColors.major).equals(expectedMajor);
-    expect(pairOfColors.minor).equals(expectedMinor);
-}
-
-function testColorToNumber(majorColor, minorColor, expectedNumber) {
-    const pairNumber = GetPairNumberFromColors(majorColor, minorColor);
-    console.log(`${majorColor} ${minorColor} = ${pairNumber}`);
-    expect(pairNumber).to.equal(expectedNumber);
-}
-
-console.log("color coder");
-testNumberToPair(4, "white", "brown");
-testNumberToPair(25, "violet", "slate");
-testColorToNumber("black", "brown", 14);
-testColorToNumber("yellow", "green", 18);
+module.exports = { GetColorFromPairNumber, GetPairNumberFromColors } ;
